@@ -53,7 +53,7 @@ const pokemon = ({ data }) => {
 export default pokemon;
 
 // static generating approach...makes the api call before the html renders to the page
-export async function getStaticProps() {
+  export async function getStaticProps() {
   const res = await fetch("https://pokeapi.co/api/v2/pokemon");
   const data = await res.json();
 

@@ -18,7 +18,6 @@ export default function Home() {
 
       <a href="/about">about</a>
       <a href="/pokemon">pokemon</a>
-      <a href="/blog">blog</a>
     </div>
   );
 }

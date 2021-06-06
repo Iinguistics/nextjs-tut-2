@@ -4,7 +4,7 @@ import Link from "next/link";
 const index = () => {
   return (
     <div>
-      Main blog page
+      Pokemon Description
       <li>
         <Link href="blog/pickachu">
           <a>How pickachu got his name</a>

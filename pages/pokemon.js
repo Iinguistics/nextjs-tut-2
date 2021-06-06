@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "../styles/Pokemon.module.scss";
 import GoBackButton from "../components/GoBackButton";
+import Link from "next/link";
 
 const pokemon = ({ data }) => {
   const [pokemonData, setPokemonData] = useState(data);
@@ -27,7 +28,7 @@ const pokemon = ({ data }) => {
       return pokemonData.results.map((item) => {
         return (
           <li key={item.name}>
-            <a href={item.url}>{item.name}</a>
+            <Link href={`details/${item.name}`}>{item.name}</Link>
           </li>
         );
       });
@@ -52,26 +53,7 @@ const pokemon = ({ data }) => {
 export default pokemon;
 
 // static generating approach...makes the api call before the html renders to the page
-// export async function getStaticProps() {
-//   const res = await fetch("https://pokeapi.co/api/v2/pokemon");
-//   const data = await res.json();
-
-//   if (!data) {
-//     return {
-//       notFound: true,
-//     };
-//   }
-
-//   return {
-//     props: {
-//       data,
-//     },
-//   };
-// }
-
-// server side props... Next.js will pre-render this page on each request using the data returned...
-// good to use for example a espn site showing the current score of a game with live up to date data
-export async function getServerSideProps(context) {
+export async function getStaticProps() {
   const res = await fetch("https://pokeapi.co/api/v2/pokemon");
   const data = await res.json();
 
@@ -80,7 +62,26 @@ export async function getServerSideProps(context) {
       notFound: true,
     };
   }
+
   return {
-    props: { data },
+    props: {
+      data,
+    },
   };
 }
+
+// server side props... Next.js will pre-render this page on each request using the data returned...
+// good to use for example a espn site showing the current score of a game with live up to date data
+// export async function getServerSideProps(context) {
+//   const res = await fetch("https://pokeapi.co/api/v2/pokemon");
+//   const data = await res.json();
+
+//   if (!data) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+//   return {
+//     props: { data },
+//   };
+// }

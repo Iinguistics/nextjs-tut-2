@@ -21,6 +21,7 @@ export default function Details({ data }) {
 
       <h1>Name: {data.name} </h1>
       <p>Weight: {data.weight}</p>
+      <p>Base Experience: {data.base_experience}</p>
     </div>
   );
 }
